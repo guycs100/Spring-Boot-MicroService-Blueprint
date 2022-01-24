@@ -5,8 +5,8 @@ This project serves the purpose of providing micro-service-based RESTful API, wr
 
 The project contain:
 
-- SpringBootWeb
-- SpringBootJPA
-- SpringBootActuator
-- SpringKafka
-- SpringBootMQ
+- Spring Boot Web
+- Spring Boot JPA
+- Spring Boot Actuator
+- Spring Kafka
+- Spring Boot MQ
