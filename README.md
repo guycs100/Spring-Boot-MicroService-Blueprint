@@ -10,3 +10,4 @@ The project contain:
 - Spring Boot Actuator
 - Spring Kafka
 - Spring Boot MQ
+- Lombok
