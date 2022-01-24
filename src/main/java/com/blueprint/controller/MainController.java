@@ -4,6 +4,7 @@ import com.blueprint.model.User;
 import com.blueprint.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.blueprint.log.LogBuilder;
@@ -26,6 +27,9 @@ public class MainController {
 
     @Autowired
     private LogBuilder logBuilder;
+
+    @Autowired
+    KafkaTemplate<String,User> kafkaTemplate;
 
     private static final String template = "Hello, %s!";
 //    @Transactional(timeout = 1)
