@@ -1,0 +1,12 @@
+test message
+{"requestQueryString":"name=32","appName":"blueprint","message":"test LogBuilder"}
+{"requestQueryString":"name=32","appName":"blueprint","message":"test LogBuilder + lambda"}
+test message
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder"}
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder + lambda"}
+test message
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder"}
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder + lambda"}
+test message
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder"}
+{"requestQueryString":null,"appName":"blueprint","message":"test LogBuilder + lambda"}
