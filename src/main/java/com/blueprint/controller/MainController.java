@@ -4,6 +4,9 @@ import com.blueprint.model.User;
 import com.blueprint.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j  // option1: Slf4j using lombok (log4j2.xml)
 @RestController
 @RequestMapping("/app")
+@EnableJms
 public class MainController {
 
     // option2: log4j2 (log4j2.xml)
@@ -31,6 +35,9 @@ public class MainController {
     @Autowired
     KafkaTemplate<String,User> kafkaTemplate;
 
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
     private static final String template = "Hello, %s!";
 //    @Transactional(timeout = 1)
     @GetMapping("/user")
@@ -40,7 +47,7 @@ public class MainController {
         System.out.println(System.currentTimeMillis());
         // initialize LogBuilder for this request.
         logBuilder.initRequest(request);
-
+//        kafkaTemplate.send("asd",new User());
 //        int i = 1;
 //        while (i < 100000) {
 //            System.out.println(i);
@@ -95,5 +102,15 @@ public class MainController {
     @PostConstruct
     void printOnce(){
         System.out.println("Print Once");
+    }
+    @GetMapping("send")
+    String send(){
+        try{
+            jmsTemplate.convertAndSend("DEV.QUEUE.1", "Hello World!");
+            return "OK";
+        }catch(JmsException ex){
+            ex.printStackTrace();
+            return "FAIL";
+        }
     }
 }
