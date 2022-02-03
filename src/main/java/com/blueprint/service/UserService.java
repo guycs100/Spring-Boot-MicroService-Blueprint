@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserRepository repository;
+    private UserRepository repository;
 
     public User newUser(User user){
         User user2 = repository.save(user);
