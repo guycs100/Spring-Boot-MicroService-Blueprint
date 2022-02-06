@@ -47,7 +47,6 @@ public class MainController {
     public User User(HttpServletRequest request,
                      @RequestParam(value = "name", defaultValue = "World")String name,
                      @RequestParam(value = "phoneNumber", defaultValue = "0")int phoneNumber){
-        System.out.println(System.currentTimeMillis());
         // initialize LogBuilder for this request.
         logBuilder.initRequest(request);
 //        kafkaTemplate.send("Add new user",new User());

@@ -40,8 +40,4 @@ public class UserService {
         //throw new RuntimeException("stam");
     }
 
-    @PostConstruct
-    public void post() {
-        System.out.println("Post Construct");
-    }
 }
