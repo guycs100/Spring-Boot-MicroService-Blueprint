@@ -16,9 +16,9 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User newUser(User user){
-        User user2 = repository.save(user);
-        return user2;
+    public User newUser(User newUser){
+        User user = repository.save(newUser);
+        return user;
     }
     public User getUserById(long id){
         User user = repository.findById(id).get();

@@ -33,16 +33,16 @@ public class MainController {
     private LogBuilder logBuilder;
 
     @Autowired
-    KafkaTemplate<String,User> kafkaTemplate;
+    KafkaTemplate<String,User> kafkaTemplate;//for kafka
 
     @Autowired
-    private JmsTemplate jmsTemplate;
+    private JmsTemplate jmsTemplate;//for IBM MQ
 
     @Autowired
     private UserService userService;
 
     private static final String template = "Hello, %s!";
-//    @Transactional(timeout = 1)
+
     @GetMapping("/user")
     public User User(HttpServletRequest request,
                      @RequestParam(value = "name", defaultValue = "World")String name,
@@ -50,13 +50,7 @@ public class MainController {
         System.out.println(System.currentTimeMillis());
         // initialize LogBuilder for this request.
         logBuilder.initRequest(request);
-//        kafkaTemplate.send("asd",new User());
-//        int i = 1;
-//        while (i < 100000) {
-//            System.out.println(i);
-//            i++;
-//        }
-//        System.out.println(System.currentTimeMillis());
+//        kafkaTemplate.send("Add new user",new User());
         User user = new User(String.format(template,name), phoneNumber);
         User newUser = userService.newUser(user);
         // Slf4j example with the help of lombok - simple
@@ -73,18 +67,7 @@ public class MainController {
         });
         return newUser;
     }
-//    @PostMapping("/user")
-//    public User User(@RequestBody User newUser){
-//        System.out.println(System.currentTimeMillis());
-////        int i = 1;
-////        while (i < 100000) {
-////            System.out.println(i);
-////            i++;
-////        }
-////        System.out.println(System.currentTimeMillis());
-//        User user = UserService.newUser(newUser);
-//        return user;
-//    }
+
     @GetMapping("/user/{id}")
     User getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
