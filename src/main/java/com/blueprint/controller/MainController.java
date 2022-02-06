@@ -38,6 +38,9 @@ public class MainController {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @Autowired
+    private UserService userService;
+
     private static final String template = "Hello, %s!";
 //    @Transactional(timeout = 1)
     @GetMapping("/user")
@@ -55,7 +58,7 @@ public class MainController {
 //        }
 //        System.out.println(System.currentTimeMillis());
         User user = new User(String.format(template,name), phoneNumber);
-        User newUser = UserService.newUser(user);
+        User newUser = userService.newUser(user);
         // Slf4j example with the help of lombok - simple
         log.info("test message");
 
@@ -83,9 +86,8 @@ public class MainController {
 //        return user;
 //    }
     @GetMapping("/user/{id}")
-    Optional<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = UserService.getUserById(id);
-
+    User getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
         return user;
     }
 
@@ -99,10 +101,7 @@ public class MainController {
             }
         };
     }
-    @PostConstruct
-    void printOnce(){
-        System.out.println("Print Once");
-    }
+
     @GetMapping("send")
     String send(){
         try{

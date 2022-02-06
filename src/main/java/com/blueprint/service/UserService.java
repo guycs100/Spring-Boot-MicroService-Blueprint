@@ -2,6 +2,7 @@ package com.blueprint.service;
 
 import com.blueprint.model.User;
 import com.blueprint.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,14 +13,15 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    @Autowired
     private UserRepository repository;
 
     public User newUser(User user){
         User user2 = repository.save(user);
         return user2;
     }
-    public Optional<User> getUserById(long id){
-        Optional<User> user = repository.findById(id);
+    public User getUserById(long id){
+        User user = repository.findById(id).get();
         return user;
     }
 
